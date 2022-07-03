@@ -18,7 +18,7 @@ body {
   height: 60px;
   display: grid;
   place-items: center;
-
+  margin: 0;
 }
 
 .search-form {
@@ -50,15 +50,13 @@ body {
 }
 
 .gallery {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: 15px;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
 }
 
 .photo-card {
-  /*width: 25%;*/
-  margin-left: 5px;
-  margin-right: 5px;
+  margin: 0 10px 20px;
 }
 
 .gallery img {
@@ -71,12 +69,12 @@ body {
   display: flex;
   flex-direction: column;
   margin: 10px auto;
-
-}
+  }
 
 .info {
   display: flex;
   text-align: center;
-  margin: 0 10px 30px;
-  border: 2px solid #eee;
-}
+  border-left: 2px solid #eee;
+  border-right: 2px solid #eee;
+  border-bottom: 3px solid #eee;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 12%), 0 4px 4px rgb(0 0 0 / 6%), 1px 4px 6px rgb(0 0 0 / 16%)}
