@@ -3,8 +3,9 @@ import {fetchImages} from "./fetchImages";
 
 let input = document.querySelector(".search-input");
 let form = document.querySelector(".search-form");
-let button = document.querySelector(".input-button");
+let loadMore = document.querySelector(".load-more");
 let gallery = document.querySelector(".gallery")
+let page = 1;
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -13,13 +14,19 @@ form.addEventListener("submit", (e) => {
 
 function fetchAndDisplayImage() {
   if (input.value.trim() !== '') {
-    fetchImages(input.value.trim()).then(response => {
+    page = 1;
+    gallery.innerHTML = "";
+    fetchImages(input.value.trim(), page).then(response => {
       console.log(response)
       if (response.data.total === 0) {
         Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.");
       } else {
         Notiflix.Notify.success(`Hooray! We found ${response.data.total} images.`);
         showImages(response.data.hits)
+
+        if (response.data.total > 40) {
+          loadMore.classList.remove("hidden")
+        }
       }
     })
   } else {
@@ -53,5 +60,19 @@ function showImages(images) {
     </div>`;
     imagesHtml += imageTemplate;
   }
-  gallery.innerHTML = imagesHtml;
+  gallery.insertAdjacentHTML('beforeend', imagesHtml);
+}
+
+loadMore.addEventListener("click", () => {
+  loadMoreImages();
+})
+
+function loadMoreImages() {
+  page++;
+  fetchImages(input.value.trim(), page).then(response => {
+    showImages(response.data.hits);
+    if (response.data.total < page * 40) {
+      loadMore.classList.add('hidden')
+    }
+  })
 }

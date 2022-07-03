@@ -84,3 +84,20 @@ body {
   border-bottom-right-radius: 5px;
   box-shadow: 0 1px 1px rgb(0 0 0 / 12%), 0 4px 4px rgb(0 0 0 / 6%), 1px 4px 6px rgb(0 0 0 / 16%)
 }
+
+.load-more {
+  width: 180px;
+  height: 40px;
+  background-color: chartreuse;
+  font-size: 20px;
+  color: black;
+  border-radius: 10px;
+  border: none;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.hidden {
+  display: none;
+}
