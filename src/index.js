@@ -1,21 +1,24 @@
+import Notiflix from 'notiflix';
+import {fetchImages} from "./fetchImages";
+
 let input = document.querySelector(".search-input");
 let form = document.querySelector(".search-form");
 let button = document.querySelector(".input-button");
 
-input.addEventListener("input", () => {
-  if (input.value.trim().length > 0) {
-    button.disabled = false;
-  } else {
-    button.disabled = true;
-  }
-})
-
 form.addEventListener("submit", (e) => {
+  e.preventDefault();
   fetchAndDisplayImage();
 });
 
 function fetchAndDisplayImage() {
-
-  console.log(input.value.trim())
-
+  if (input.value.trim() !== '') {
+    fetchImages(input.value.trim()).then(response => {
+      console.log(response)
+      if (response.data.total === 0){
+        Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.");
+      }
+    })
+  } else {
+    Notiflix.Notify.failure("Please, write something!");
+  }
 }

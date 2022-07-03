@@ -42,3 +42,7 @@ body {
   height: 20px;
   vertical-align: middle;
 }
+
+.search-input:focus{
+  outline: none;
+}
