@@ -70,6 +70,10 @@ body {
   width: 350px;
 }
 
+.gallery a {
+  display: grid;
+}
+
 .info-item {
   display: flex;
   flex-direction: column;

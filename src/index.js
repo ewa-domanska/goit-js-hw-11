@@ -1,11 +1,15 @@
 import Notiflix from 'notiflix';
-import {fetchImages} from "./fetchImages";
+import {fetchImages, perPage} from "./fetchImages";
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 let input = document.querySelector(".search-input");
 let form = document.querySelector(".search-form");
 let loadMore = document.querySelector(".load-more");
 let gallery = document.querySelector(".gallery")
 let page = 1;
+
+let lightbox = new SimpleLightbox(".gallery a")
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -24,7 +28,7 @@ function fetchAndDisplayImage() {
         Notiflix.Notify.success(`Hooray! We found ${response.data.total} images.`);
         showImages(response.data.hits)
 
-        if (response.data.total > 40) {
+        if (response.data.total > perPage) {
           loadMore.classList.remove("hidden")
         }
       }
@@ -38,7 +42,9 @@ function showImages(images) {
   let imagesHtml = "";
   for (let image of images) {
     let imageTemplate = `<div class="photo-card">
-      <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" />
+      <a href="${image.largeImageURL}">
+        <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" />
+      </a>
       <div class="info">
         <p class="info-item">
           <b>Likes</b>
@@ -61,6 +67,7 @@ function showImages(images) {
     imagesHtml += imageTemplate;
   }
   gallery.insertAdjacentHTML('beforeend', imagesHtml);
+  lightbox.refresh()
 }
 
 loadMore.addEventListener("click", () => {
@@ -71,7 +78,7 @@ function loadMoreImages() {
   page++;
   fetchImages(input.value.trim(), page).then(response => {
     showImages(response.data.hits);
-    if (response.data.total < page * 40) {
+    if (response.data.total < page * perPage) {
       loadMore.classList.add('hidden')
     }
   })
