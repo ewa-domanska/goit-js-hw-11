@@ -20,9 +20,11 @@ body {
   place-items: center;
 
 }
+
 .search-form {
   display: flex;
 }
+
 .search-input {
   height: 40px;
   width: 400px;
@@ -43,6 +45,38 @@ body {
   vertical-align: middle;
 }
 
-.search-input:focus{
+.search-input:focus {
   outline: none;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 15px;
+}
+
+.photo-card {
+  /*width: 25%;*/
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.gallery img {
+  object-fit: cover;
+  height: 250px;
+  width: 360px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  margin: 10px auto;
+
+}
+
+.info {
+  display: flex;
+  text-align: center;
+  margin: 0 10px 30px;
+  border: 2px solid #eee;
 }

@@ -18,6 +18,7 @@ function fetchAndDisplayImage() {
       if (response.data.total === 0) {
         Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.");
       } else {
+        Notiflix.Notify.success(`Hooray! We found ${response.data.total} images.`);
         showImages(response.data.hits)
       }
     })
