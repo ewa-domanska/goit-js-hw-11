@@ -50,31 +50,37 @@ body {
 }
 
 .gallery {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: space-around;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .photo-card {
-  margin: 0 10px 20px;
+  display: grid;
+  width: 350px;
+  align-content: center;
 }
 
 .gallery img {
   object-fit: cover;
-  height: 250px;
-  width: 360px;
+  height: 200px;
+  width: 350px;
 }
 
 .info-item {
   display: flex;
   flex-direction: column;
   margin: 10px auto;
-  }
+}
 
 .info {
   display: flex;
   text-align: center;
-  border-left: 2px solid #eee;
-  border-right: 2px solid #eee;
-  border-bottom: 3px solid #eee;
-  box-shadow: 0 1px 1px rgb(0 0 0 / 12%), 0 4px 4px rgb(0 0 0 / 6%), 1px 4px 6px rgb(0 0 0 / 16%)}
+  border: 1px solid gray;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 12%), 0 4px 4px rgb(0 0 0 / 6%), 1px 4px 6px rgb(0 0 0 / 16%)
+}
